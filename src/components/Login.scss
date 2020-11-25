@@ -1,0 +1,165 @@
+$container-padding: 50px;
+$login-margin: 50px;
+$centre-margin: 50px;
+$color-primary: #282828;
+$color-secondary: #75e1c0;
+$color-tertiary: #9c9fad;
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap");
+
+*,
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+  color: 282828;
+}
+
+.container {
+  padding: $container-padding;
+  width: calc(100vw - 2 * #{$container-padding});
+  height: calc(100vh - 2 * #{$container-padding});
+  // background-color: yellow;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.login {
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: space-between;
+  margin-right: $centre-margin;
+  // width: 30%;
+  min-width: 30%;
+}
+
+img {
+  width: 45%;
+  margin-left: $centre-margin;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.btn {
+  margin-bottom: $login-margin;
+  border-radius: 100px;
+  border: none;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 1rem;
+  font-weight: medium;
+  stroke: white;
+
+  transition: all 0.2s ease-in-out;
+
+  &--demo {
+    width: 60%;
+    background-color: $color-secondary;
+
+    &:hover {
+      cursor: pointer;
+      width: 65%;
+      background-color: #5bc0a2;
+    }
+  }
+
+  &--log-in {
+    width: 30%;
+    background-color: $color-tertiary;
+
+    &:hover {
+      cursor: pointer;
+      width: 35%;
+      background-color: #848798;
+    }
+  }
+}
+
+.input {
+  display: block;
+  margin-bottom: $login-margin;
+  // background: none;
+  width: 100%;
+  padding: 10px;
+  // border: 1px solid $color-primary 50% !important;
+  border-radius: 200px;
+  box-sizing: border-box;
+  // border-radius: 100px;
+  // border-color: $color-primary 50%;
+  border-width: 1px !important;
+  border-color: $color-primary;
+  transition: all 0.2s ease-in-out;
+
+  &:focus {
+    // border-color: $color-secondary;
+    // outline-color: transparent;
+    // outline-style: none;
+    outline: none !important;
+    border: 1px solid $color-secondary;
+    box-shadow: 0 0 10px #719ece;
+  }
+}
+
+h1 {
+  // margin-top: $login-margin;
+  margin-bottom: $login-margin;
+}
+
+h4 {
+  margin-bottom: calc(#{$login-margin} / 2);
+  opacity: 0.5;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+h5 {
+  // margin-bottom: $login-margin;
+  opacity: 0.5;
+  font-weight: 400;
+}
+
+@media only screen and (max-width: 1024px) {
+  img {
+    display: none;
+  }
+
+  .login {
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: space-between;
+    // margin-right: $centre-margin;
+    width: 75%;
+  }
+
+  .buttons {
+    display: block;
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+
+    &--demo {
+      // width: 55%;
+      &:hover {
+        width: 100%;
+      }
+    }
+
+    &--log-in {
+      // width: 55%;
+      &:hover {
+        width: 100%;
+      }
+    }
+  }
+}
