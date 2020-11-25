@@ -60,23 +60,13 @@ img {
 
   transition: all 0.2s ease-in-out;
 
-  &--demo {
+  &--sign-up {
     width: 100%;
     background-color: $color-secondary;
 
     &:hover {
       cursor: pointer;
       background-color: #5bc0a2;
-    }
-  }
-
-  &--log-in {
-    width: 100%;
-    background-color: $color-tertiary;
-
-    &:hover {
-      cursor: pointer;
-      background-color: #848798;
     }
   }
 }

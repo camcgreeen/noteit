@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Route, BrowserRouter as Router } from "react-router-dom";
-import Login from "./components/Login";
+import LogIn from "./components/LogIn";
 import SignUp from "./components/SignUp";
 import Dashboard from "./components/Dashboard";
 import Note from "./components/Note";
@@ -12,7 +12,7 @@ import Note from "./components/Note";
 const routing = (
   <Router>
     <div id="routing-container">
-      <Route path="/login" component={Login}></Route>
+      <Route path="/login" component={LogIn}></Route>
       <Route path="/signup" component={SignUp}></Route>
       <Route path="/dashboard" component={Dashboard}></Route>
       <Route path="/note" component={Note}></Route>
