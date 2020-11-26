@@ -12,9 +12,13 @@ class Login extends React.Component {
     return (
       <div className="container">
         <Link to="/login">
-          <img src="https://svgshare.com/i/Rns.svg" alt="" />
+          <img
+            className="logo-text"
+            src="https://svgshare.com/i/Rns.svg"
+            alt=""
+          />
         </Link>
-        <h1>Log in</h1>
+        <h1 className="h1-form">Log in</h1>
         <form onSubmit={console.log("form submitted")}>
           <input
             type="text"
@@ -33,8 +37,10 @@ class Login extends React.Component {
             Log in
           </button>
         </form>
-        <h4>No email or password is required to log in as a demo user</h4>
-        <h5>
+        <h4 className="h4-form">
+          No email or password is required to log in as a demo user
+        </h4>
+        <h5 className="h5-form">
           Don't have an account? <Link to="/signup">Sign up</Link>
         </h5>
       </div>

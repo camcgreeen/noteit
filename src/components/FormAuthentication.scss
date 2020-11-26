@@ -13,7 +13,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Montserrat", sans-serif;
-  color: 282828;
+  color: $color-primary;
   overflow-x: hidden;
 }
 
@@ -35,10 +35,10 @@ body {
   border-radius: 24px;
 }
 
-img {
+.logo-text {
+  width: 86px;
+  height: 54px;
   margin: 0;
-  left: 0;
-  position: relative;
   margin-bottom: $login-margin;
 }
 
@@ -115,20 +115,20 @@ form {
   }
 }
 
-h1 {
+.h1-form {
   margin-bottom: $login-margin;
   font-weight: 500;
   font-size: 1.75rem;
 }
 
-h4 {
+.h4-form {
   margin-bottom: calc(#{$login-margin} / 2);
   opacity: 0.5;
   font-weight: 700;
   font-size: 0.8rem;
 }
 
-h5 {
+.h5-form {
   opacity: 0.5;
   font-weight: 400;
 }
@@ -150,17 +150,17 @@ h5 {
     transform: translateX(-50%) translateY(0%);
   }
 
-  img {
+  .logo-text {
     width: calc(86px * 0.9);
     height: calc(54px * 0.9);
   }
 
   .input,
   .btn,
-  img,
-  h1,
-  h4,
-  h5 {
+  .logo-text,
+  .h1-form,
+  .h4-form,
+  .h5-form {
     margin-bottom: $login-margin;
   }
 }

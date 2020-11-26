@@ -12,9 +12,13 @@ class SignUp extends React.Component {
     return (
       <div className="container">
         <Link to="/signup">
-          <img src="https://svgshare.com/i/Rns.svg" alt="" />
+          <img
+            className="logo-text"
+            src="https://svgshare.com/i/Rns.svg"
+            alt=""
+          />
         </Link>
-        <h1>Sign up</h1>
+        <h1 className="h1-form">Sign up</h1>
         <form onSubmit={console.log("form submitted")}>
           <input
             type="text"
@@ -40,7 +44,7 @@ class SignUp extends React.Component {
             Sign up
           </button>
         </form>
-        <h5>
+        <h5 className="h5-form">
           Already have an account? <Link to="/login">Log in</Link>
         </h5>
       </div>
