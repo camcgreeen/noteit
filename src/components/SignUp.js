@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import React from "react";
-import "./SignUp.scss";
+import "./FormAuthentication.scss";
 
 class SignUp extends React.Component {
   constructor() {
@@ -12,27 +12,31 @@ class SignUp extends React.Component {
     return (
       <div className="container">
         <Link to="/signup">
-          <img src="https://svgshare.com/i/RnJ.svg" alt="" />
+          <img src="https://svgshare.com/i/Rns.svg" alt="" />
         </Link>
         <h1>Sign up</h1>
         <form onSubmit={console.log("form submitted")}>
-          <input type="text" placeholder="Email" class="input input--email" />
+          <input
+            type="text"
+            placeholder="Email"
+            className="input input--email"
+          />
           <input
             type="password"
             placeholder="Password"
-            class="input input--password"
+            className="input input--password"
           />
           <input
             type="password"
             placeholder="Confirm your password"
-            class="input input--password-confirmation"
+            className="input input--password-confirmation"
           />
           <input
             type="text"
             placeholder="Nickname"
-            class="input input--nickname"
+            className="input input--nickname"
           />
-          <button type="submit" class="btn btn--sign-up">
+          <button type="submit" className="btn btn--sign-up">
             Sign up
           </button>
         </form>
