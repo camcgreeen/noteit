@@ -11,18 +11,25 @@ class Navbar extends React.Component {
   render() {
     return (
       <nav>
-        <div className="profile-picture">
-          <p className="profile-picture profile-picture__initial">C</p>
+        <div className="profile">
+          <div className="profile__picture">
+            <p className="profile__picture__initial">C</p>
+          </div>
+          <button className="profile__logout">Log out</button>
         </div>
         <Link to="/dashboard">
-          <img src="https://svgshare.com/i/RpE.svg" alt="Note-It logo" />
+          <img
+            className="logo"
+            src="https://svgshare.com/i/RpE.svg"
+            alt="Note-It logo"
+          />
         </Link>
         <a
           href="https://github.com/camcgreen/noteit"
           target="_blank"
           rel="noreferrer"
         >
-          <img src="https://svgshare.com/i/Rpx.svg" alt="" />
+          <img className="github" src="https://svgshare.com/i/Rpx.svg" alt="" />
         </a>
       </nav>
     );

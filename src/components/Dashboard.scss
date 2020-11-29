@@ -8,6 +8,7 @@ $nav-padding: 15px;
 
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("//cdn.quilljs.com/1.2.6/quill.snow.css");
 
 *,
 html,
@@ -29,7 +30,11 @@ body {
   width: 50%;
   min-width: 400px;
   min-height: 350px;
-  height: 65vh;
+  // height: calc(65vh - #{2 * $main-container-padding});
+  // height: 65vh;
+  // position: relative;
+  // display: block;
+  // box-sizing: border-box;
   // position: relative;
   // position: absolute;
   // left: 50%;
@@ -37,6 +42,114 @@ body {
   background-color: white;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
   border-radius: 24px;
+}
+
+// .notes-screen {
+//   background-color: yellow;
+//   width: 100%;
+//   height: 100%;
+//   // padding: 20px;
+//   display: flex;
+//   flex-direction: column;
+//   // justify-content: space-evenly;
+// }
+
+.main-container .ql-container {
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  background: #fefcfc;
+}
+
+.quill {
+  // overflow-x: visible !important;
+  // overflow: scroll;
+  // overflow: hidden;
+  // flex: 1;
+}
+
+.main-container .ql-snow.ql-toolbar {
+  display: block;
+  background: #eaecec;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+  // padding: 20px;
+}
+
+.ql-editor {
+  // overflow-y: scroll;
+  // height: 100%;
+  // min-height: 150px;
+  height: 35vh;
+}
+
+.ql-header.ql-picker {
+  // overflow: visible;
+}
+
+.ql-header.ql-picker.ql-expanded {
+  // overflow: visible;
+}
+
+.app-btn {
+  // transition: all 2s ease-in-out;
+  &--add {
+    margin-left: 40px;
+    &:hover {
+      cursor: pointer;
+      circle {
+        fill: $color-primary;
+      }
+      line {
+        stroke: white;
+      }
+    }
+  }
+  &--back {
+    display: block;
+    margin-bottom: 20px;
+    transition: all 20s ease-in-out;
+    circle {
+      fill: white;
+      stroke: $color-primary;
+    }
+    path {
+      fill: $color-primary;
+    }
+    &:hover {
+      cursor: pointer;
+      circle {
+        fill: $color-primary;
+        stroke: white;
+      }
+      path {
+        fill: white;
+      }
+    }
+  }
+}
+
+.app-input {
+  &__title {
+    // height: 50px;
+    box-sizing: border-box;
+    border: none;
+    // padding: 5px;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    width: 100%;
+    text-overflow: ellipsis;
+    // width: calc(100% - 300px);
+    // background-color: #29487d;
+    // color: white;
+    // padding-left: 50px;
+  }
+}
+
+.modified {
+  margin-bottom: 20px;
+  font-weight: 400;
+  opacity: 0.5;
+  font-size: 0.75rem;
 }
 
 .new-note {
@@ -51,20 +164,20 @@ body {
     font-size: 1rem;
     flex-shrink: 0;
   }
-  &__btn-add {
-    // transform: translateY(-50%);
-    flex-shrink: 0;
-    margin-left: 40px;
-    &:hover {
-      cursor: pointer;
-      circle {
-        fill: $color-primary;
-      }
-      line {
-        stroke: white;
-      }
-    }
-  }
+  // &__btn-add {
+  //   // transform: translateY(-50%);
+  //   flex-shrink: 0;
+  //   margin-left: 40px;
+  //   &:hover {
+  //     cursor: pointer;
+  //     circle {
+  //       fill: $color-primary;
+  //     }
+  //     line {
+  //       stroke: white;
+  //     }
+  //   }
+  // }
   &__colours {
     // flex-shrink: 0;
     margin-left: 40px;
@@ -117,6 +230,7 @@ body {
   display: grid;
   grid-gap: 2em;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  list-style: none;
 
   &__note {
     background-color: #ffdbcd;
@@ -142,47 +256,92 @@ body {
     }
   }
 }
+.profile {
+  display: flex;
+  flex-direction: row;
+  &__picture {
+    border-radius: 50%;
+    background-color: #da4f7a;
 
-.profile-picture {
-  width: $nav-element-size;
-  height: $nav-element-size;
-  border-radius: 50%;
-  background-color: #da4f7a;
-  color: white;
+    &__initial {
+      // position: absolute;
+      // top: 50%;
+      // left: 50%;
+      // transform: translate(-50%, -50%);
+      color: white;
+      text-align: center;
+      line-height: $nav-element-size;
+      font-family: "Roboto", sans-serif;
+      font-size: 16px;
+    }
+  }
 
-  &__initial {
-    // position: absolute;
-    // top: 50%;
-    // left: 50%;
-    // transform: translate(-50%, -50%);
-    text-align: center;
-    line-height: $nav-element-size;
-    font-family: "Roboto", sans-serif;
-    font-size: 20px;
+  &__logout {
+    margin-left: 10px;
+    padding: 4px;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 
-img {
+.logo,
+.github,
+.profile__picture {
   width: $nav-element-size;
   height: $nav-element-size;
-  margin: 0;
-  padding: 0;
+}
+
+.logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.github {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 nav {
   // height: 60px;
+  position: relative;
   width: calc(100% - #{$nav-padding} * 2);
   padding: $nav-padding;
   background-color: #555967;
   // position: fixed;
   // bottom: 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+  // display: flex;
+  // flex-direction: row;
+  // align-items: center;
+  // justify-content: space-between;
 }
 
 @media only screen and (max-width: 1024px) {
+  .main-container {
+    width: calc(100vw - 2 * #{$main-container-padding});
+    min-width: 200px;
+    margin: 0;
+    // max-height: 350px;
+    height: calc(
+      100vh - #{2 * $nav-padding} - #{$nav-element-size} - #{2 *
+        $main-container-padding}
+    );
+    // height: calc(100vh);
+    // height: calc(100vh - #{2 * $nav-padding});
+    // height: 100vh;
+    //     $nav-element-size: 30px;
+    // $nav-padding: 15px;
+    // min-height: 100vh;
+    // top: 0;
+    // left: 50%;
+    // transform: translateX(-50%) translateY(0%);
+  }
+
   .new-note {
     &__colours {
       &__circle {
@@ -192,3 +351,11 @@ nav {
     }
   }
 }
+
+// @media only screen and (max-height: 750px) {
+//   .main-container {
+//     top: 0;
+//     left: 50%;
+//     transform: translateX(-50%) translateY(0%);
+//   }
+// }

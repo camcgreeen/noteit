@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import React from "react";
+import "./Dashboard.scss";
 
 class Overview extends React.Component {
   constructor() {
@@ -13,7 +14,8 @@ class Overview extends React.Component {
         <div className="new-note">
           <h1 className="new-note__h1">Notes</h1>
           <svg
-            className="new-note__btn-add"
+            // className="new-note__btn-add"
+            className="app-btn app-btn--add"
             width="36"
             height="36"
             viewBox="0 0 36 36"

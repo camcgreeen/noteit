@@ -14,7 +14,7 @@ class SignUp extends React.Component {
         <Link to="/signup">
           <img
             className="logo-text"
-            src="https://svgshare.com/i/Rns.svg"
+            src="https://svgshare.com/i/Rq0.svg"
             alt=""
           />
         </Link>

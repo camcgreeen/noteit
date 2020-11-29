@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import React from "react";
+import ReactQuill from "react-quill";
 import Navbar from "./Navbar";
 import Note from "./Note";
 import Overview from "./Overview";
@@ -9,7 +10,7 @@ class Dashboard extends React.Component {
   constructor() {
     super();
     this.state = {
-      showNote: false,
+      showNote: true,
     };
   }
 

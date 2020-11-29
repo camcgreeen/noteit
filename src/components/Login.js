@@ -14,7 +14,7 @@ class Login extends React.Component {
         <Link to="/login">
           <img
             className="logo-text"
-            src="https://svgshare.com/i/Rns.svg"
+            src="https://svgshare.com/i/Rq0.svg"
             alt=""
           />
         </Link>
