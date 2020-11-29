@@ -10,7 +10,7 @@ class Dashboard extends React.Component {
   constructor() {
     super();
     this.state = {
-      showNote: true,
+      showNote: false,
     };
   }
 
@@ -18,9 +18,10 @@ class Dashboard extends React.Component {
     return (
       <>
         <Navbar />
-        <div className="main-container">
+        {/* <div className="main-container">
           {this.state.showNote ? <Note /> : <Overview />}
-        </div>
+        </div> */}
+        {this.state.showNote ? <Note /> : <Overview />}
         {/* <nav>
           <div className="profile-picture"></div>
           <Link to="/dashboard">

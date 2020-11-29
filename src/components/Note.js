@@ -15,7 +15,7 @@ class Note extends React.Component {
 
   render() {
     return (
-      <>
+      <div className="notes-screen">
         <svg
           className="app-btn app-btn--back"
           width="36"
@@ -40,7 +40,7 @@ class Note extends React.Component {
           value={this.state.text}
           onChange={this.updateBody}
         ></ReactQuill>
-      </>
+      </div>
     );
   }
 
