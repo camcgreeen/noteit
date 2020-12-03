@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import React from "react";
 import ReactQuill from "react-quill";
 import Navbar from "./Navbar";
@@ -18,26 +18,13 @@ class Dashboard extends React.Component {
     return (
       <>
         <Navbar />
-        {/* <div className="main-container">
-          {this.state.showNote ? <Note /> : <Overview />}
-        </div> */}
-        {this.state.showNote ? <Note /> : <Overview />}
-        {/* <nav>
-          <div className="profile-picture"></div>
-          <Link to="/dashboard">
-            <img src="https://svgshare.com/i/Ro9.svg" alt="Note-It logo" />
-          </Link>
-          <a
-            href="https://github.com/camcgreen/noteit"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img src="https://svgshare.com/i/RpP.svg" alt="" />
-          </a>
-        </nav> */}
+        {
+          // this.state.showNote ? <Note /> : <Overview />
+        }
+        <Overview />
       </>
     );
   }
 }
 
-export default Dashboard;
+export default withRouter(Dashboard);

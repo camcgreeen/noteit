@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import React from "react";
 import "./Dashboard.scss";
 
@@ -7,6 +7,30 @@ class Overview extends React.Component {
     super();
     this.state = {
       visible: "",
+      notes: [],
+      colours: [
+        {
+          orange: "#ffdbcd",
+        },
+        {
+          beige: "#fff5e8",
+        },
+        {
+          pink: "#ffe4ed",
+        },
+        {
+          purple: "#f4e4fa",
+        },
+        {
+          blue: "#ccf4f5",
+        },
+        {
+          green: "#e5f9ea",
+        },
+        {
+          yellow: "#fffdc8",
+        },
+      ],
     };
   }
 
@@ -32,6 +56,45 @@ class Overview extends React.Component {
       },
       {
         yellow: "#fffdc8",
+      },
+    ];
+    let notes = [
+      {
+        title:
+          "The beginning of screenless design: UI jobs to be taken over by Solution Architect",
+        body: "You heard",
+        timestamp: Date.now(),
+        backgroundColor: colours[0][Object.keys(colours[0])[0]],
+        id: "6m2bWCnSNZz1TRvdSOD8",
+      },
+      {
+        title: "The end of screenless design wow that was quick",
+        body: "I know",
+        timestamp: Date.now(),
+        backgroundColor: colours[1][Object.keys(colours[1])[0]],
+        id: "x9qkoe2V2Sq3rY3XluH0",
+      },
+      {
+        title: "Joe Biden sprints into the room",
+        body: "Real fast",
+        timestamp: Date.now(),
+        backgroundColor: colours[2][Object.keys(colours[2])[0]],
+        id: "SK1NekYr0ZCWc6Gl3TYf",
+      },
+      {
+        title:
+          "Reeeeeeeeeeeeeally long note to test the text wrapping proooooooooooooooooooooooooooooooooooooooooperties",
+        body: "Real long",
+        timestamp: Date.now(),
+        backgroundColor: colours[3][Object.keys(colours[3])[0]],
+        id: "lw2u2b0BOwvOsrUPs1y4",
+      },
+      {
+        title: "Note to make the page scroll",
+        body: "Okay",
+        timestamp: Date.now(),
+        backgroundColor: colours[4][Object.keys(colours[4])[0]],
+        id: "Sxy13syX5BqJcdOy7ln3",
       },
     ];
     const colourItems = colours.map((colour, i) => {
@@ -106,7 +169,38 @@ class Overview extends React.Component {
           {
             // iterate through a notes array where all the raw info is stored and render it like that when doing this properly
           }
-          <li className="notes__note notes__note--1">
+          {this.state.notes.map((note, i) => {
+            return (
+              <Link
+                to={{
+                  pathname: `/note/${note.id}`,
+                  state: {
+                    title: note.title,
+                    text: note.body,
+                    timestamp: note.timestamp,
+                  },
+                }}
+                style={{ textDecoration: "none" }}
+              >
+                <li
+                  className="notes__note"
+                  key={i}
+                  style={{ backgroundColor: note.backgroundColor }}
+                  // onClick={this.goToNote.bind(this, i)}
+                >
+                  <div className="notes__note__container">
+                    <p className="notes__note__container__title">
+                      {note.title}
+                    </p>
+                    <p className="notes__note__container__date">
+                      {this.convertTimestampToDate(note.timestamp)}
+                    </p>
+                  </div>
+                </li>
+              </Link>
+            );
+          })}
+          {/* <li className="notes__note notes__note--1">
             <div className="notes__note__container">
               <p className="notes__note__container__title">
                 The beginning of screenless design: UI jobs to be taken over by
@@ -141,7 +235,7 @@ class Overview extends React.Component {
               <p className="notes__note__container__date">May 20, 2020</p>
             </div>
           </li>
-          <li className="notes__note notes__note--5"></li>
+          <li className="notes__note notes__note--5"></li> */}
           {/* <li className="notes__note notes__note--6"></li>
           <li className="notes__note notes__note--7"></li>
           <li className="notes__note notes__note--8"></li> */}
@@ -149,6 +243,59 @@ class Overview extends React.Component {
       </div>
     );
   }
+  componentDidMount = () => {
+    this.setState({
+      notes: [
+        {
+          title:
+            "The beginning of screenless design: UI jobs to be taken over by Solution Architect",
+          body: "You heard",
+          timestamp: Date.now(),
+          backgroundColor: this.state.colours[0][
+            Object.keys(this.state.colours[0])[0]
+          ],
+          id: "6m2bWCnSNZz1TRvdSOD8",
+        },
+        {
+          title: "The end of screenless design wow that was quick",
+          body: "I know",
+          timestamp: Date.now(),
+          backgroundColor: this.state.colours[1][
+            Object.keys(this.state.colours[1])[0]
+          ],
+          id: "x9qkoe2V2Sq3rY3XluH0",
+        },
+        {
+          title: "Joe Biden sprints into the room",
+          body: "Real fast",
+          timestamp: Date.now(),
+          backgroundColor: this.state.colours[2][
+            Object.keys(this.state.colours[2])[0]
+          ],
+          id: "SK1NekYr0ZCWc6Gl3TYf",
+        },
+        {
+          title:
+            "Reeeeeeeeeeeeeally long note to test the text wrapping proooooooooooooooooooooooooooooooooooooooooperties",
+          body: "Real long",
+          timestamp: Date.now(),
+          backgroundColor: this.state.colours[3][
+            Object.keys(this.state.colours[3])[0]
+          ],
+          id: "lw2u2b0BOwvOsrUPs1y4",
+        },
+        {
+          title: "Note to make the page scroll",
+          body: "Okay",
+          timestamp: Date.now(),
+          backgroundColor: this.state.colours[4][
+            Object.keys(this.state.colours[4])[0]
+          ],
+          id: "Sxy13syX5BqJcdOy7ln3",
+        },
+      ],
+    });
+  };
   toggleColoursVisibility = () => {
     if (this.state.visible === "") {
       this.setState({ visible: "visible" });
@@ -159,9 +306,50 @@ class Overview extends React.Component {
   addNote = (colour) => {
     if (this.state.visible === "visible") {
       // PUT CODE FOR ADDING A NOTE HERE (with background colour)
-      console.log(colour);
+      const newNote = {
+        title: "",
+        body: "",
+        timestamp: Date.now(),
+        backgroundColor: colour,
+        id: "Gsunbq5Bgeu2PbV7kUMT",
+      };
+      this.setState(
+        (prevState) => ({
+          notes: [...prevState.notes, newNote],
+          visible: false,
+        }),
+        () => {
+          // console.log(newNote.id);
+          // this.props.history.push(`/note/${newNote.id}`);
+        }
+      );
+      // this.props.history.push(`/note/${newNote.id}`);
+      this.props.history.push({
+        pathname: `/note/${newNote.id}`,
+        state: {
+          title: newNote.title,
+          text: newNote.body,
+          timestamp: newNote.timestamp,
+        },
+      });
+
+      // notes.push(newNote);
+      // console.log("adding newNote =", newNote);
+      // console.log("notes after ", notes);
     }
+  };
+  // goToNote = (index) => {
+  //   console.log(index);
+  //   // const history = useHistory();
+  //   this.props.history.push("/note");
+  // };
+  convertTimestampToDate = (timestamp) => {
+    const date = Date(timestamp);
+    // return date;
+    const dateArray = date.split(" ");
+    const dateFormatted = [dateArray[1], dateArray[2], dateArray[3]].join(" ");
+    return dateFormatted;
   };
 }
 
-export default Overview;
+export default withRouter(Overview);

@@ -48,7 +48,7 @@ body {
 .overview-screen {
   margin: $dashboard-margin auto;
   padding: $main-container-padding;
-  width: 50%;
+  width: 65%;
   min-width: 400px;
   height: calc(
     75vh - #{2 * $main-container-padding} - #{2 * $nav-padding} - #{$nav-element-size}
@@ -152,7 +152,7 @@ body {
     }
   }
   &--back {
-    display: block;
+    // display: block;
     margin-bottom: 20px;
     transition: all 20s ease-in-out;
     circle {
@@ -314,6 +314,13 @@ body {
     border-radius: 20px;
     // padding: 4px;
     padding: 30px;
+    transition: background-color 0.1s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #f0f0f0 !important;
+      // color: red !important;
+    }
 
     &__container {
       // background-color: yellow;
@@ -339,6 +346,7 @@ body {
         display: -webkit-box;
         -webkit-line-clamp: 4;
         -webkit-box-orient: vertical;
+        word-wrap: break-word;
         // height: 10px;
       }
 
