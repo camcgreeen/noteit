@@ -9,6 +9,19 @@ import SignUp from "./components/SignUp";
 import Dashboard from "./components/Dashboard";
 import Note from "./components/Note";
 
+const firebase = require("firebase");
+require("firebase/firestore");
+
+firebase.initializeApp({
+  apiKey: "AIzaSyBJq9l9Ej_bXS4QaJVEYPLqfE5UMdfYUZc",
+  authDomain: "note-it-38acb.firebaseapp.com",
+  projectId: "note-it-38acb",
+  storageBucket: "note-it-38acb.appspot.com",
+  messagingSenderId: "924675449619",
+  appId: "1:924675449619:web:eb8ca5b5dd6991b90af0e6",
+  measurementId: "G-9DGLKEC6LP",
+});
+
 const routing = (
   <Router>
     <div id="routing-container">

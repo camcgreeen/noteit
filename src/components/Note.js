@@ -3,6 +3,7 @@ import React from "react";
 import ReactQuill from "react-quill";
 import debounce from "../helpers";
 import "./Dashboard.scss";
+const firebase = require("firebase");
 
 class Note extends React.Component {
   constructor() {
@@ -11,6 +12,7 @@ class Note extends React.Component {
       title: "",
       text: "",
       timestamp: null,
+      email: null,
     };
   }
 
@@ -51,11 +53,18 @@ class Note extends React.Component {
   }
 
   componentDidMount = () => {
-    this.setState({
-      title: this.props.location.state.title,
-      text: this.props.location.state.text,
-      timestamp: this.props.location.state.timestamp,
-    });
+    setTimeout(() => {
+      this.setState(
+        {
+          title: this.props.location.state.title,
+          text: this.props.location.state.text,
+          timestamp: this.props.location.state.timestamp,
+          email: this.props.location.state.email,
+          index: this.props.location.state.index,
+        },
+        () => console.log("Note state ", this.state)
+      );
+    }, 500);
   };
 
   componentDidUpdate = () => {
@@ -65,12 +74,12 @@ class Note extends React.Component {
   updateBody = async (val) => {
     await this.setState({ text: val });
     console.log("body", this.state.text);
-    // this.update();
+    this.updateNote();
   };
   updateTitle = async (txt) => {
     await this.setState({ title: txt });
     console.log("title", this.state.title);
-    // this.update();
+    this.updateNote();
   };
   // make this a helper function and import it for Note and Overview
   convertTimestampToDate = (timestamp) => {
@@ -79,6 +88,23 @@ class Note extends React.Component {
     const dateArray = date.split(" ");
     const dateFormatted = [dateArray[1], dateArray[2], dateArray[3]].join(" ");
     return dateFormatted;
+  };
+
+  updateNote = () => {
+    console.log("updating note on database");
+    if (this.state.email) {
+      // firebase
+      //   .firestore()
+      //   .collection("notes")
+      //   .doc(this.state.email)
+      //   .update({
+      //     savedNotes: firebase.firestore.FieldValue.arrayUnion({
+      //       title: this.state.title,
+      //       body: this.state.text,
+      //       timestamp: Date.now(),
+      //     }),
+      //   });
+    }
   };
   //   update = debounce(() => {
   //     this.props.noteUpdate(this.state.id, {
