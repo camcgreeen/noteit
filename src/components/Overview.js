@@ -8,7 +8,7 @@ class Overview extends React.Component {
     super();
     this.state = {
       visible: "",
-      notes: [],
+      notes: null,
       email: null,
       colours: [
         {
@@ -94,9 +94,9 @@ class Overview extends React.Component {
           </svg>
         </div>
         <ul className="new-note__colours">{colourItems}</ul>
-        <ul className="notes">
-          {this.state.notes &&
-            this.state.notes.map((note, i) => {
+        {this.state.notes !== null ? (
+          <ul className="notes">
+            {this.state.notes.map((note, i) => {
               return (
                 <Link
                   to={{
@@ -129,7 +129,10 @@ class Overview extends React.Component {
                 </Link>
               );
             })}
-        </ul>
+          </ul>
+        ) : (
+          <h1 className="loading">Loading...</h1>
+        )}
       </div>
     );
   }
@@ -142,10 +145,33 @@ class Overview extends React.Component {
     //     ),
     //   500
     // );
-
-    setTimeout(async () => {
+    // setTimeout(async () => {
+    //   if (this.props.email) {
+    //     console.log("EMAIL =", this.props.email);
+    //     await firebase
+    //       .firestore()
+    //       .collection("notes")
+    //       .doc(this.props.email)
+    //       .onSnapshot(async (res) => {
+    //         const data = res.data();
+    //         if (data) {
+    //           const notes = data.savedNotes;
+    //           // const notes = res.docs.map((_doc) => _doc.data());
+    //           // console.log(notes);
+    //           await this.setState(() => ({
+    //             notes,
+    //           }));
+    //           console.log(this.state.notes);
+    //         }
+    //       });
+    //   }
+    // }, 800);
+  };
+  componentDidUpdate = async (newProps) => {
+    const oldProps = this.props;
+    if (oldProps.email !== newProps.email) {
+      console.log("email received");
       if (this.props.email) {
-        console.log("EMAIL =", this.props.email);
         await firebase
           .firestore()
           .collection("notes")
@@ -154,8 +180,6 @@ class Overview extends React.Component {
             const data = res.data();
             if (data) {
               const notes = data.savedNotes;
-              // const notes = res.docs.map((_doc) => _doc.data());
-              // console.log(notes);
               await this.setState(() => ({
                 notes,
               }));
@@ -163,7 +187,7 @@ class Overview extends React.Component {
             }
           });
       }
-    }, 500);
+    }
   };
   toggleColoursVisibility = () => {
     if (this.state.visible === "") {
@@ -181,7 +205,7 @@ class Overview extends React.Component {
         body: "",
         timestamp: Date.now(),
         backgroundColor: colour,
-        id: "Gsunbq5Bgeu2PbV7kUMT",
+        id: this.generateRandomString(10),
       };
       this.setState(
         (prevState) => ({
@@ -220,6 +244,14 @@ class Overview extends React.Component {
     const dateArray = date.split(" ");
     const dateFormatted = [dateArray[1], dateArray[2], dateArray[3]].join(" ");
     return dateFormatted;
+  };
+
+  generateRandomString = (length) => {
+    const chars = "0123456789abcdefghijklmnopqrstuvwxyz";
+    let result = "";
+    for (let i = length; i > 0; --i)
+      result += chars[Math.round(Math.random() * (chars.length - 1))];
+    return result;
   };
 }
 

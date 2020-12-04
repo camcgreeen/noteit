@@ -13,6 +13,7 @@ class Note extends React.Component {
       text: "",
       timestamp: null,
       email: null,
+      showSaveNotification: false,
     };
   }
 
@@ -20,6 +21,7 @@ class Note extends React.Component {
     // console.log(this.props);
     return (
       <div className="notes-screen">
+        {this.state.showSaveNotification && <h5 className="save">Saving...</h5>}
         <Link to="/dashboard">
           <svg
             className="app-btn app-btn--back"
@@ -47,7 +49,45 @@ class Note extends React.Component {
           theme="snow"
           value={this.state.text}
           onChange={this.updateBody}
+          formats={[
+            "header",
+            "bold",
+            "italic",
+            "underline",
+            "strike",
+            "blockquote",
+            "list",
+            "bullet",
+            "indent",
+            "link",
+            "image",
+            "code-block",
+          ]}
+          // modules={{
+          //   toolbar: [
+          //     { header: [1, 2, false] },
+          //     "bold",
+          //     "italic",
+          //     "underline",
+          //     "link",
+          //     "code-block",
+          //     { list: "ordered" },
+          //     { list: "bullet" },
+          //   ],
+          // }}
+          modules={{
+            toolbar: [
+              [{ header: [1, 2, false] }],
+              ["bold", "italic", "underline", "strike"],
+              ["link", "code-block"],
+              [{ list: "ordered" }, { list: "bullet" }],
+              ["color", "image"],
+            ],
+          }}
         ></ReactQuill>
+        <button class="delete" onClick={this.deleteNote}>
+          Delete note
+        </button>
       </div>
     );
   }
@@ -66,11 +106,45 @@ class Note extends React.Component {
         // },
         // () => console.log("Note state ", this.state)
       );
-    }, 500);
+    }, 100);
   };
 
   componentDidUpdate = () => {
     // console.log(this.state);
+  };
+
+  deleteNote = async () => {
+    if (
+      window.confirm(`Are you sure you want to delete ${this.state.title}?`)
+    ) {
+      if (this.state.email) {
+        let notesAfterDeletion;
+        await firebase
+          .firestore()
+          .collection("notes")
+          .doc(this.state.email)
+          .get()
+          .then(async (res) => {
+            const data = res.data();
+            const notes = data.savedNotes;
+            notesAfterDeletion = [...notes];
+            notesAfterDeletion.splice(this.state.index, 1);
+          });
+
+        // console.log("notesAfterDeletion =", notesAfterDeletion);
+
+        await firebase
+          .firestore()
+          .collection("notes")
+          .doc(this.state.email)
+          .set({
+            savedNotes: [...notesAfterDeletion],
+          });
+        this.props.history.push({
+          pathname: `/dashboard`,
+        });
+      }
+    }
   };
 
   updateBody = async (val) => {
@@ -95,6 +169,8 @@ class Note extends React.Component {
   updateNote = debounce(async () => {
     console.log("updating note on database");
     if (this.state.email) {
+      this.setState({ showSaveNotification: true });
+      setTimeout(() => this.setState({ showSaveNotification: false }), 1000);
       console.log("updating note from email", this.state.email);
       let editedNotes;
       await firebase
@@ -124,7 +200,7 @@ class Note extends React.Component {
           savedNotes: [...editedNotes],
         });
     }
-  }, 1500);
+  }, 1000);
   //   update = debounce(() => {
   //     this.props.noteUpdate(this.state.id, {
   //       title: this.state.title,

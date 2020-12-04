@@ -30,26 +30,28 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount = () => {
-    console.log("dashboard mounted");
-    firebase.auth().onAuthStateChanged(async (_usr) => {
-      if (!_usr) {
-        this.props.history.push("/login");
-      } else {
-        console.log(_usr);
-        firebase
-          .firestore()
-          .collection("users")
-          .doc(_usr.email)
-          .get()
-          .then((doc) => {
-            const userData = doc.data();
-            this.setState({
-              email: userData.email,
-              nickname: userData.nickname,
+    setTimeout(() => {
+      console.log("dashboard mounted");
+      firebase.auth().onAuthStateChanged(async (_usr) => {
+        if (!_usr) {
+          this.props.history.push("/login");
+        } else {
+          console.log(_usr);
+          firebase
+            .firestore()
+            .collection("users")
+            .doc(_usr.email)
+            .get()
+            .then((doc) => {
+              const userData = doc.data();
+              this.setState({
+                email: userData.email,
+                nickname: userData.nickname,
+              });
             });
-          });
-      }
-    });
+        }
+      });
+    }, 500);
   };
 }
 

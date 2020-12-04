@@ -70,6 +70,7 @@ body {
 }
 
 .notes-screen {
+  position: relative;
   margin: $dashboard-margin auto;
   padding: $main-container-padding;
   width: 50%;
@@ -127,6 +128,7 @@ body {
   // height: 100%;
   // min-height: 150px;
   height: 35vh;
+  // margin-bottom: $dashboard-margin;
 }
 
 .ql-header.ql-picker {
@@ -135,6 +137,29 @@ body {
 
 .ql-header.ql-picker.ql-expanded {
   // overflow: visible;
+}
+
+.save {
+  position: absolute;
+  top: $main-container-padding;
+  right: $main-container-padding;
+  opacity: 0.5;
+  transform: translate(0%, 50%);
+  font-weight: 400;
+  font-size: 0.75rem;
+}
+
+.delete {
+  margin-top: 20px;
+  padding: 4px;
+  cursor: pointer;
+  // border-radius: 40px;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    background-color: #cf6f6f;
+    color: white;
+    // border: white 1px;
+  }
 }
 
 .app-btn {
@@ -197,6 +222,10 @@ body {
   font-weight: 400;
   opacity: 0.5;
   font-size: 0.75rem;
+}
+
+.loading {
+  // font-size: 1rem;
 }
 
 .new-note {
@@ -426,25 +455,26 @@ nav {
 }
 
 @media only screen and (max-width: 1024px) {
-  .overview-screen,
-  .notes-screen {
+  .overview-screen {
     width: calc(100vw - 2 * #{$main-container-padding});
     min-width: 200px;
     margin: 0;
-    // max-height: 350px;
     height: calc(
       100vh - #{2 * $nav-padding} - #{$nav-element-size} - #{2 *
         $main-container-padding}
     );
-    // height: calc(100vh);
-    // height: calc(100vh - #{2 * $nav-padding});
+  }
+
+  .notes-screen {
+    width: calc(100vw - 2 * #{$main-container-padding});
+    min-width: 200px;
+    margin: 0;
+    // height: calc(
+    //   100vh - #{2 * $nav-padding} - #{$nav-element-size} - #{2 *
+    //     $main-container-padding}
+    // );
+    height: calc(100vh - #{2 * $main-container-padding});
     // height: 100vh;
-    //     $nav-element-size: 30px;
-    // $nav-padding: 15px;
-    // min-height: 100vh;
-    // top: 0;
-    // left: 50%;
-    // transform: translateX(-50%) translateY(0%);
   }
 
   .new-note {

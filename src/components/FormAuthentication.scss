@@ -121,6 +121,12 @@ form {
   font-size: 1.75rem;
 }
 
+.h2-form {
+  margin-bottom: $login-margin;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
 .h4-form {
   margin-bottom: calc(#{$login-margin} / 2);
   opacity: 0.5;
