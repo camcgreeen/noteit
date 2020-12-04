@@ -1,6 +1,7 @@
 import { Link, withRouter } from "react-router-dom";
 import React from "react";
 import "./Dashboard.scss";
+const firebase = require("firebase");
 
 class Overview extends React.Component {
   constructor() {
@@ -104,8 +105,9 @@ class Overview extends React.Component {
                       title: note.title,
                       text: note.body,
                       timestamp: note.timestamp,
-                      email: this.state.email,
+                      email: this.props.email,
                       index: i,
+                      backgroundColor: note.backgroundColor,
                     },
                   }}
                   style={{ textDecoration: "none" }}
@@ -131,15 +133,37 @@ class Overview extends React.Component {
       </div>
     );
   }
-  componentDidMount = () => {
-    setTimeout(
-      () =>
-        this.setState(
-          { notes: this.props.notes, email: this.props.email },
-          () => console.log("email is ", this.state.email)
-        ),
-      500
-    );
+  componentDidMount = async () => {
+    // setTimeout(
+    //   () =>
+    //     this.setState(
+    //       { notes: this.props.notes, email: this.props.email },
+    //       () => console.log("email is ", this.state.email)
+    //     ),
+    //   500
+    // );
+
+    setTimeout(async () => {
+      if (this.props.email) {
+        console.log("EMAIL =", this.props.email);
+        await firebase
+          .firestore()
+          .collection("notes")
+          .doc(this.props.email)
+          .onSnapshot(async (res) => {
+            const data = res.data();
+            if (data) {
+              const notes = data.savedNotes;
+              // const notes = res.docs.map((_doc) => _doc.data());
+              // console.log(notes);
+              await this.setState(() => ({
+                notes,
+              }));
+              console.log(this.state.notes);
+            }
+          });
+      }
+    }, 500);
   };
   toggleColoursVisibility = () => {
     if (this.state.visible === "") {
@@ -149,6 +173,8 @@ class Overview extends React.Component {
     }
   };
   addNote = (colour) => {
+    console.log("add note");
+    console.log("adding note to email", this.props.email);
     if (this.state.visible === "visible") {
       const newNote = {
         title: "",
@@ -157,18 +183,36 @@ class Overview extends React.Component {
         backgroundColor: colour,
         id: "Gsunbq5Bgeu2PbV7kUMT",
       };
-      this.setState((prevState) => ({
-        notes: [...prevState.notes, newNote],
-        visible: false,
-      }));
-      this.props.history.push({
-        pathname: `/note/${newNote.id}`,
-        state: {
-          title: newNote.title,
-          text: newNote.body,
-          timestamp: newNote.timestamp,
-        },
-      });
+      this.setState(
+        (prevState) => ({
+          notes: [...prevState.notes, newNote],
+          visible: false,
+        }),
+        async () => {
+          console.log("new notes =", this.state.notes);
+          if (this.props.email) {
+            await firebase
+              .firestore()
+              .collection("notes")
+              .doc(this.props.email)
+              .set({
+                savedNotes: [...this.state.notes],
+              });
+
+            this.props.history.push({
+              pathname: `/note/${newNote.id}`,
+              state: {
+                title: newNote.title,
+                text: newNote.body,
+                timestamp: newNote.timestamp,
+                email: this.props.email,
+                index: this.state.notes.length - 1,
+                backgroundColor: colour,
+              },
+            });
+          }
+        }
+      );
     }
   };
   convertTimestampToDate = (timestamp) => {

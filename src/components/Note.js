@@ -17,7 +17,7 @@ class Note extends React.Component {
   }
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <div className="notes-screen">
         <Link to="/dashboard">
@@ -61,24 +61,26 @@ class Note extends React.Component {
           timestamp: this.props.location.state.timestamp,
           email: this.props.location.state.email,
           index: this.props.location.state.index,
-        },
-        () => console.log("Note state ", this.state)
+          backgroundColor: this.props.location.state.backgroundColor,
+        }
+        // },
+        // () => console.log("Note state ", this.state)
       );
     }, 500);
   };
 
   componentDidUpdate = () => {
-    console.log(this.state);
+    // console.log(this.state);
   };
 
   updateBody = async (val) => {
     await this.setState({ text: val });
-    console.log("body", this.state.text);
+    // console.log("body", this.state.text);
     this.updateNote();
   };
   updateTitle = async (txt) => {
     await this.setState({ title: txt });
-    console.log("title", this.state.title);
+    // console.log("title", this.state.title);
     this.updateNote();
   };
   // make this a helper function and import it for Note and Overview
@@ -90,22 +92,39 @@ class Note extends React.Component {
     return dateFormatted;
   };
 
-  updateNote = () => {
+  updateNote = debounce(async () => {
     console.log("updating note on database");
     if (this.state.email) {
-      // firebase
-      //   .firestore()
-      //   .collection("notes")
-      //   .doc(this.state.email)
-      //   .update({
-      //     savedNotes: firebase.firestore.FieldValue.arrayUnion({
-      //       title: this.state.title,
-      //       body: this.state.text,
-      //       timestamp: Date.now(),
-      //     }),
-      //   });
+      console.log("updating note from email", this.state.email);
+      let editedNotes;
+      await firebase
+        .firestore()
+        .collection("notes")
+        .doc(this.state.email)
+        .get()
+        .then(async (res) => {
+          const data = res.data();
+          const notes = data.savedNotes;
+          editedNotes = [...notes];
+          editedNotes[this.state.index].title = this.state.title;
+          editedNotes[this.state.index].body = this.state.text;
+          editedNotes[this.state.index].timestamp = Date.now();
+          editedNotes[
+            this.state.index
+          ].backgroundColor = this.state.backgroundColor;
+        });
+
+      console.log("editedNotes =", editedNotes);
+
+      firebase
+        .firestore()
+        .collection("notes")
+        .doc(this.state.email)
+        .set({
+          savedNotes: [...editedNotes],
+        });
     }
-  };
+  }, 1500);
   //   update = debounce(() => {
   //     this.props.noteUpdate(this.state.id, {
   //       title: this.state.title,

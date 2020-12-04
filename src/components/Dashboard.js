@@ -14,7 +14,6 @@ class Dashboard extends React.Component {
       // showNote: false,
       email: null,
       nickname: null,
-      notes: null,
     };
   }
 
@@ -25,7 +24,7 @@ class Dashboard extends React.Component {
         {
           // this.state.showNote ? <Note /> : <Overview />
         }
-        <Overview notes={this.state.notes} email={this.state.email} />
+        <Overview email={this.state.email} />
       </>
     );
   }
@@ -48,21 +47,6 @@ class Dashboard extends React.Component {
               email: userData.email,
               nickname: userData.nickname,
             });
-          });
-
-        await firebase
-          .firestore()
-          .collection("notes")
-          .doc(_usr.email)
-          .onSnapshot(async (res) => {
-            const data = res.data();
-            const notes = data.savedNotes;
-            // const notes = res.docs.map((_doc) => _doc.data());
-            // console.log(notes);
-            await this.setState(() => ({
-              notes,
-            }));
-            console.log(this.state.notes);
           });
       }
     });
