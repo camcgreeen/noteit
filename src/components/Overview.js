@@ -8,6 +8,7 @@ class Overview extends React.Component {
     super();
     this.state = {
       visible: "",
+      notesClass: "notes__note",
       notes: null,
       email: null,
       colours: [
@@ -81,7 +82,8 @@ class Overview extends React.Component {
               x2="18"
               y2="24"
               stroke="#2E2E2E"
-              stroke-width="2"
+              stroke-width={this.state.visible ? 0 : 2}
+              style={{ transition: "stroke-width 0.1s ease-in-out" }}
             />
             <line
               x1="24"
@@ -113,9 +115,14 @@ class Overview extends React.Component {
                   style={{ textDecoration: "none" }}
                 >
                   <li
-                    className="notes__note"
+                    className={this.state.notesClass}
+                    // className="notes__note"
                     key={i}
-                    style={{ backgroundColor: note.backgroundColor }}
+                    style={{
+                      backgroundColor: note.backgroundColor,
+                      transition: `opacity ${(i + 1) / 6}s ease-in-out`,
+                      // opacity: 1,
+                    }}
                   >
                     <div className="notes__note__container">
                       <p className="notes__note__container__title">
@@ -166,6 +173,7 @@ class Overview extends React.Component {
     //       });
     //   }
     // }, 800);
+    console.log("ssss");
   };
   componentDidUpdate = async (newProps) => {
     const oldProps = this.props;
@@ -186,6 +194,10 @@ class Overview extends React.Component {
               console.log(this.state.notes);
             }
           });
+        setTimeout(
+          () => this.setState({ notesClass: "notes__note visible" }),
+          500
+        );
       }
     }
   };

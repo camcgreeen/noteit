@@ -4,6 +4,7 @@ $centre-margin: 50px;
 $color-primary: #2e2e2e;
 $color-secondary: #75e1c0;
 $color-tertiary: #9c9fad;
+$fade-duration: 0.4s;
 
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap");
 
@@ -15,6 +16,56 @@ body {
   font-family: "Montserrat", sans-serif;
   color: $color-primary;
   // overflow-x: hidden;
+  animation: fadeIn ease-in-out $fade-duration;
+  -webkit-animation: fadeIn ease-in-out $fade-duration;
+  -moz-animation: fadeIn ease-in-out $fade-duration;
+  -o-animation: fadeIn ease-in-out $fade-duration;
+  -ms-animation: fadeIn ease-in-out $fade-duration;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 body {

@@ -20,7 +20,7 @@ class Dashboard extends React.Component {
   render() {
     return (
       <>
-        <Navbar email={this.state.email} nickname={this.state.nickname} />
+        <Navbar email={this.state.email} />
         {
           // this.state.showNote ? <Note /> : <Overview />
         }
