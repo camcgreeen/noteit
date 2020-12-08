@@ -21,11 +21,11 @@ class SignUp extends React.Component {
         <Link to="/signup">
           <img
             className="logo-text"
-            src="https://svgshare.com/i/Rq0.svg"
+            src="https://svgshare.com/i/S7V.svg"
             alt=""
           />
         </Link>
-        <h1 className="h1-form">Sign up</h1>
+        {/* <h1 className="h1-form">Sign up</h1> */}
         <form onSubmit={(e) => this.submitSignup(e)}>
           <input
             autoFocus
@@ -46,12 +46,15 @@ class SignUp extends React.Component {
             className="input input--password-confirmation"
             onChange={(e) => this.userTyping("passwordConfirmation", e)}
           />
-          <input
+          <h4 className="error-text">
+            {this.state.signupError ? this.state.signupError : null}
+          </h4>
+          {/* <input
             type="text"
             placeholder="Nickname"
             className="input input--nickname"
             onChange={(e) => this.userTyping("nickname", e)}
-          />
+          /> */}
           <button type="submit" className="btn btn--sign-up">
             Sign up
           </button>

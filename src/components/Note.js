@@ -24,7 +24,13 @@ class Note extends React.Component {
       <>
         <div className="notes-screen">
           {this.state.showSaveNotification && (
-            <h5 className="save">Saving...</h5>
+            // <h5 className="save">Saving...</h5>
+            <div class="lds-ring save">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
           )}
           <Link to="/dashboard">
             <svg
@@ -177,7 +183,7 @@ class Note extends React.Component {
     console.log("updating note on database");
     if (this.state.email) {
       this.setState({ showSaveNotification: true });
-      setTimeout(() => this.setState({ showSaveNotification: false }), 1000);
+      setTimeout(() => this.setState({ showSaveNotification: false }), 1500);
       console.log("updating note from email", this.state.email);
       let editedNotes;
       await firebase
@@ -207,7 +213,7 @@ class Note extends React.Component {
           savedNotes: [...editedNotes],
         });
     }
-  }, 1000);
+  }, 500);
   //   update = debounce(() => {
   //     this.props.noteUpdate(this.state.id, {
   //       title: this.state.title,

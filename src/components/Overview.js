@@ -138,7 +138,11 @@ class Overview extends React.Component {
             })}
           </ul>
         ) : (
-          <h1 className="loading">Loading...</h1>
+          // <h1 className="loading">Loading...</h1>
+          <div class="lds-ripple">
+            <div></div>
+            <div></div>
+          </div>
         )}
       </div>
     );

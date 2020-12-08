@@ -19,11 +19,11 @@ class Login extends React.Component {
         <Link to="/login">
           <img
             className="logo-text"
-            src="https://svgshare.com/i/Rq0.svg"
+            src="https://svgshare.com/i/S7V.svg"
             alt=""
           />
         </Link>
-        <h1 className="h1-form">Log in</h1>
+        {/* <h1 className="h1-form">Log in</h1> */}
         <button
           type="submit"
           className="btn btn--demo"
@@ -31,10 +31,18 @@ class Login extends React.Component {
         >
           Log in as a demo user
         </button>
-        <h2 className="h2-form">Or log in with email</h2>
+        <h4 className="h4-form">
+          No email or password is required to log in as a demo user
+        </h4>
+        {/* <h2 className="h2-form">Or log in with email</h2> */}
+        <span class="separator-row">
+          <span class="separator-row__horizontal-line"></span>
+          <span class="separator-row__label">or</span>
+          <span class="separator-row__horizontal-line"></span>
+        </span>
         <form onSubmit={(e) => this.submitLogin(e)}>
           <input
-            autoFocus
+            // autoFocus
             type="text"
             placeholder="Email"
             className="input input--email"
@@ -43,18 +51,21 @@ class Login extends React.Component {
           <input
             type="password"
             placeholder="Password"
-            className="input input--password"
+            className="input input--password-confirmation"
             onChange={(e) => this.userTyping("password", e)}
           />
+          <h4 className="error-text">
+            {this.state.loginError ? this.state.loginError : null}
+          </h4>
           <button type="submit" className="btn btn--log-in">
             Log in
           </button>
         </form>
-        <h4 className="h4-form">
-          No email or password is required to log in as a demo user
-        </h4>
         <h5 className="h5-form">
-          Don't have an account? <Link to="/signup">Sign up</Link>
+          Don't have an account?{" "}
+          <Link to="/signup" className="h5-form__link">
+            Sign up
+          </Link>
         </h5>
       </div>
     );
@@ -117,13 +128,13 @@ class Login extends React.Component {
               },
               (dbError) => {
                 console.log(dbError);
-                this.setState({ signupError: "Failed to add user" });
+                this.setState({ loginError: "Failed to add user" });
               }
             );
         },
         (authError) => {
           console.log(authError);
-          this.setState({ signupError: authError.message });
+          this.setState({ loginError: authError.message });
         }
       );
   };
