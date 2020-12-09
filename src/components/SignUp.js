@@ -156,7 +156,7 @@ class SignUp extends React.Component {
       {
         title:
           "Welcome to Note-It, a full-stack application built using React, Firebase and React Quill 😁",
-        body: `<h1>Thanks for stopping by!</h1><p><br></p><p>I'm Cam Green, the creator of Note-It, a full-stack application built with React, Firebase and React Quill. ✍️</p><p><br></p><p>Feel free to take a look at some demo notes I've included with your account to get started, and add some more notes if you'd like!</p><p><br></p><p>The link to the project repo can be found <a href="https://github.com/camcgreen/noteit" rel="noopener noreferrer" target="_blank">here</a>.</p><p><br></p><p>For any opportunities, please do feel free to contact me on <a href="mailto:c.c.green@outlook.com" rel="noopener noreferrer" target="_blank">c.c.green@outlook.com</a>. 🤓</p>`,
+        body: `<h2>Thanks for stopping by!</h2><p><br></p><p>I'm Cam Green, the creator of Note-It, a full-stack application built with React, Firebase and React Quill. ✍️</p><p><br></p><p>Feel free to take a look at some demo notes I've included with your account to get started, and add some more notes if you'd like!</p><p><br></p><p>The link to the project repo can be found <a href="https://github.com/camcgreen/noteit" rel="noopener noreferrer" target="_blank">here</a>.</p><p><br></p><p>For any opportunities, please do feel free to contact me on <a href="mailto:c.c.green@outlook.com" rel="noopener noreferrer" target="_blank">c.c.green@outlook.com</a>. 🤓</p>`,
         id: this.generateRandomString(10),
         timestamp: Date.now(),
         backgroundColor: "#ffdbcd",

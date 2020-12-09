@@ -1,11 +1,11 @@
-$main-container-padding: 50px;
+$main-container-padding: 30px;
 $dashboard-margin: 50px;
 $color-primary: #2e2e2e;
 $color-secondary: #75e1c0;
 $color-tertiary: #9c9fad;
 $color-danger: #df4444;
-$nav-element-size: 40px;
-$nav-padding: 20px;
+$nav-element-size: 30px;
+$nav-padding: 4px;
 $fade-duration: 0.4s;
 $save-indicator-size: 20px;
 
@@ -26,6 +26,7 @@ body {
   -moz-animation: fadeIn ease-in-out $fade-duration;
   -o-animation: fadeIn ease-in-out $fade-duration;
   -ms-animation: fadeIn ease-in-out $fade-duration;
+  // background-color: #f6f8f9;
 }
 
 @keyframes fadeIn {
@@ -127,7 +128,7 @@ body {
   position: relative;
   margin: $dashboard-margin auto;
   padding: $main-container-padding;
-  width: 50%;
+  width: 65%;
   min-width: 400px;
   // height: calc(75vh - #{2 * $main-container-padding});
   // min-height: 150px;
@@ -183,6 +184,7 @@ body {
   // height: 100%;
   // min-height: 150px;
   height: 47.5vh;
+  font-size: 0.8rem;
   // height: 20vh;
   // margin-bottom: $dashboard-margin;
 }
@@ -301,6 +303,11 @@ body {
   font-weight: 400;
   opacity: 0.5;
   font-size: 0.75rem;
+  animation: none !important;
+  -webkit-animation: none !important;
+  -moz-animation: none !important;
+  -o-animation: none !important;
+  -ms-animation: none !important;
 }
 
 .loading {
@@ -422,7 +429,7 @@ body {
 
 .notes {
   display: grid;
-  grid-gap: 2em;
+  grid-gap: $main-container-padding;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   list-style: none;
   // background-color: yellow;
@@ -527,9 +534,10 @@ body {
   // padding: 4px;
   width: $nav-element-size;
   height: $nav-element-size;
+  margin-right: 20px;
 
   rect {
-    fill: white;
+    fill: #f6f8f9;
     stroke: $color-primary;
   }
   path {
@@ -539,10 +547,10 @@ body {
     cursor: pointer;
     rect {
       fill: $color-primary;
-      stroke: white;
+      stroke: #f6f8f9;
     }
     path {
-      fill: white;
+      fill: #f6f8f9;
     }
   }
 }
@@ -576,6 +584,7 @@ body {
 }
 
 .github {
+  margin-left: 20px;
   // position: absolute;
   // left: 0;
   // top: 50%;
@@ -584,7 +593,7 @@ body {
 
 nav {
   // height: 60px;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: calc(100% - #{$nav-padding} * 2);
   // width: 100%;
@@ -604,6 +613,22 @@ nav {
   // flex-direction: row;
   // align-items: center;
   // justify-content: space-between;
+}
+
+.no-notes {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1rem;
+  font-weight: 400;
+  opacity: 0.5;
+  // width: 100%;
+  animation: none !important;
+  -webkit-animation: none !important;
+  -moz-animation: none !important;
+  -o-animation: none !important;
+  -ms-animation: none !important;
 }
 
 .lds-ripple {
@@ -700,20 +725,26 @@ lds-ring {
 
 @media only screen and (max-width: 1024px) {
   .overview-screen {
-    width: calc(100vw - 2 * #{$main-container-padding});
+    width: calc(100vw - 2 * #{$main-container-padding / 2});
     min-width: 200px;
     margin: 0;
     margin-top: 5vh;
     margin-bottom: 5vh;
+    padding: #{$main-container-padding / 2};
     // margin-top: 3vh;
     height: calc(
       100vh - 10vh - #{2 * $nav-padding} - #{$nav-element-size} - #{2 *
-        $main-container-padding}
+        $main-container-padding / 2}
     );
     // height: calc(100vh - #{2 * $nav-padding} - #{$nav-element-size});
     // height: 95vh;
     // max-height: 100vh;
     // height: 68vh;
+  }
+
+  .no-notes {
+    width: 100%;
+    text-align: center;
   }
 
   .notes-screen {
@@ -722,6 +753,7 @@ lds-ring {
     width: calc(100vw - 2 * #{$main-container-padding / 2});
     min-width: 200px;
     margin: 0;
+    // background-color: red;
     margin-top: 5vh;
     margin-bottom: 5vh;
     // margin-top: 3vh;
@@ -729,12 +761,21 @@ lds-ring {
       100vh - 10vh - #{2 * $nav-padding} - #{$nav-element-size} -
         $main-container-padding
     );
+    min-height: calc(600px - 5vh);
     // height: calc(
     //   100vh - #{2 * $nav-padding} - #{$nav-element-size} - #{2 *
     //     $main-container-padding}
     // );
     height: calc(100vh - 10vh - $main-container-padding);
     // max-height: 100vh;
+  }
+
+  .app-input__title {
+    font-size: 1.5rem;
+  }
+
+  .modified {
+    font-size: 0.65rem;
   }
 
   .ql-editor {
@@ -744,6 +785,8 @@ lds-ring {
     // height: 20vh;
     // margin-bottom: $dashboard-margin;
     height: 37vh;
+    min-height: 100px;
+    font-size: 0.6rem;
   }
 
   .app-btn {

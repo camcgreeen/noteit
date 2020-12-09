@@ -96,6 +96,9 @@ class Overview extends React.Component {
           </svg>
         </div>
         <ul className="new-note__colours">{colourItems}</ul>
+        {this.state.notes !== null && this.state.notes.length === 0 && (
+          <h1 className="no-notes">You have no notes to display</h1>
+        )}
         {this.state.notes !== null ? (
           <ul className="notes">
             {this.state.notes.map((note, i) => {
