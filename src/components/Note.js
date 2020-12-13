@@ -19,12 +19,10 @@ class Note extends React.Component {
   }
 
   render() {
-    // console.log(this.props);
     return (
       <>
         <div className="notes-screen">
           {this.state.showSaveNotification && (
-            // <h5 className="save">Saving...</h5>
             <div class="lds-ring save">
               <div></div>
               <div></div>
@@ -98,18 +96,6 @@ class Note extends React.Component {
               "image",
               "code-block",
             ]}
-            // modules={{
-            //   toolbar: [
-            //     { header: [1, 2, false] },
-            //     "bold",
-            //     "italic",
-            //     "underline",
-            //     "link",
-            //     "code-block",
-            //     { list: "ordered" },
-            //     { list: "bullet" },
-            //   ],
-            // }}
             modules={{
               toolbar: [
                 [{ header: [1, 2, false] }],
@@ -120,9 +106,6 @@ class Note extends React.Component {
               ],
             }}
           ></ReactQuill>
-          {/* <button class="delete" onClick={this.deleteNote}>
-            Delete note
-          </button> */}
         </div>
         <Navbar email={this.state.email} />
       </>
@@ -131,23 +114,15 @@ class Note extends React.Component {
 
   componentDidMount = () => {
     setTimeout(() => {
-      this.setState(
-        {
-          title: this.props.location.state.title,
-          text: this.props.location.state.text,
-          timestamp: this.props.location.state.timestamp,
-          email: this.props.location.state.email,
-          index: this.props.location.state.index,
-          backgroundColor: this.props.location.state.backgroundColor,
-        }
-        // },
-        // () => console.log("Note state ", this.state)
-      );
+      this.setState({
+        title: this.props.location.state.title,
+        text: this.props.location.state.text,
+        timestamp: this.props.location.state.timestamp,
+        email: this.props.location.state.email,
+        index: this.props.location.state.index,
+        backgroundColor: this.props.location.state.backgroundColor,
+      });
     }, 100);
-  };
-
-  componentDidUpdate = () => {
-    // console.log(this.state);
   };
 
   deleteNote = async () => {
@@ -168,8 +143,6 @@ class Note extends React.Component {
             notesAfterDeletion.splice(this.state.index, 1);
           });
 
-        // console.log("notesAfterDeletion =", notesAfterDeletion);
-
         await firebase
           .firestore()
           .collection("notes")
@@ -186,29 +159,23 @@ class Note extends React.Component {
 
   updateBody = async (val) => {
     await this.setState({ text: val });
-    // console.log("body", this.state.text);
     this.updateNote();
   };
   updateTitle = async (txt) => {
     await this.setState({ title: txt });
-    // console.log("title", this.state.title);
     this.updateNote();
   };
-  // make this a helper function and import it for Note and Overview
   convertTimestampToDate = (timestamp) => {
     const date = Date(timestamp);
-    // return date;
     const dateArray = date.split(" ");
     const dateFormatted = [dateArray[1], dateArray[2], dateArray[3]].join(" ");
     return dateFormatted;
   };
 
   updateNote = debounce(async () => {
-    console.log("updating note on database");
     if (this.state.email) {
       this.setState({ showSaveNotification: true });
       setTimeout(() => this.setState({ showSaveNotification: false }), 1500);
-      console.log("updating note from email", this.state.email);
       let editedNotes;
       await firebase
         .firestore()
@@ -227,8 +194,6 @@ class Note extends React.Component {
           ].backgroundColor = this.state.backgroundColor;
         });
 
-      console.log("editedNotes =", editedNotes);
-
       firebase
         .firestore()
         .collection("notes")
@@ -238,12 +203,6 @@ class Note extends React.Component {
         });
     }
   }, 500);
-  //   update = debounce(() => {
-  //     this.props.noteUpdate(this.state.id, {
-  //       title: this.state.title,
-  //       body: this.state.text,
-  //     });
-  //   }, 1500);
 }
 
 export default withRouter(Note);

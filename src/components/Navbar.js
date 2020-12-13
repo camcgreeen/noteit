@@ -12,25 +12,6 @@ class Navbar extends React.Component {
   render() {
     return (
       <nav>
-        {/* <div className="profile">
-          <div className="profile__picture">
-            <p className="profile__picture__initial">
-              {this.props.nickname !== null
-                ? this.props.nickname.split("")[0].toUpperCase()
-                : "D"}
-            </p>
-          </div> */}
-        {/* <button className="profile__logout" onClick={this.logOut}>
-          Log out
-        </button> */}
-        {/* </div> */}
-        {/* <Link to="/dashboard">
-          <img
-            className="logo"
-            src="https://svgshare.com/i/RpE.svg"
-            alt="Note-It logo"
-          />
-        </Link> */}
         <a
           href="https://github.com/camcgreen/noteit"
           target="_blank"
@@ -49,9 +30,6 @@ class Navbar extends React.Component {
             Cam Green
           </a>
         </h5>
-        {/* <button className="logout" onClick={this.logOut}>
-          Log out
-        </button> */}
         <svg
           width="40"
           height="40"
@@ -83,7 +61,6 @@ class Navbar extends React.Component {
   }
 
   logOut = () => {
-    // console.log("SIGNING OUT of account", this.state.email);
     firebase.auth().signOut();
   };
 }

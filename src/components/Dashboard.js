@@ -11,7 +11,6 @@ class Dashboard extends React.Component {
   constructor() {
     super();
     this.state = {
-      // showNote: false,
       email: null,
       nickname: null,
     };
@@ -21,9 +20,6 @@ class Dashboard extends React.Component {
     return (
       <>
         <Navbar email={this.state.email} />
-        {
-          // this.state.showNote ? <Note /> : <Overview />
-        }
         <Overview email={this.state.email} />
       </>
     );
@@ -31,12 +27,10 @@ class Dashboard extends React.Component {
 
   componentDidMount = () => {
     setTimeout(() => {
-      console.log("dashboard mounted");
       firebase.auth().onAuthStateChanged(async (_usr) => {
         if (!_usr) {
           this.props.history.push("/login");
         } else {
-          console.log(_usr);
           firebase
             .firestore()
             .collection("users")

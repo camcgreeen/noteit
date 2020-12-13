@@ -119,12 +119,10 @@ class Overview extends React.Component {
                 >
                   <li
                     className={this.state.notesClass}
-                    // className="notes__note"
                     key={i}
                     style={{
                       backgroundColor: note.backgroundColor,
                       transition: `opacity ${(i + 1) / 6}s ease-in-out`,
-                      // opacity: 1,
                     }}
                   >
                     <div className="notes__note__container">
@@ -141,7 +139,6 @@ class Overview extends React.Component {
             })}
           </ul>
         ) : (
-          // <h1 className="loading">Loading...</h1>
           <div class="lds-ripple">
             <div></div>
             <div></div>
@@ -150,42 +147,10 @@ class Overview extends React.Component {
       </div>
     );
   }
-  componentDidMount = async () => {
-    // setTimeout(
-    //   () =>
-    //     this.setState(
-    //       { notes: this.props.notes, email: this.props.email },
-    //       () => console.log("email is ", this.state.email)
-    //     ),
-    //   500
-    // );
-    // setTimeout(async () => {
-    //   if (this.props.email) {
-    //     console.log("EMAIL =", this.props.email);
-    //     await firebase
-    //       .firestore()
-    //       .collection("notes")
-    //       .doc(this.props.email)
-    //       .onSnapshot(async (res) => {
-    //         const data = res.data();
-    //         if (data) {
-    //           const notes = data.savedNotes;
-    //           // const notes = res.docs.map((_doc) => _doc.data());
-    //           // console.log(notes);
-    //           await this.setState(() => ({
-    //             notes,
-    //           }));
-    //           console.log(this.state.notes);
-    //         }
-    //       });
-    //   }
-    // }, 800);
-    console.log("ssss");
-  };
+
   componentDidUpdate = async (newProps) => {
     const oldProps = this.props;
     if (oldProps.email !== newProps.email) {
-      console.log("email received");
       if (this.props.email) {
         await firebase
           .firestore()
@@ -198,7 +163,6 @@ class Overview extends React.Component {
               await this.setState(() => ({
                 notes,
               }));
-              console.log(this.state.notes);
             }
           });
         setTimeout(
@@ -216,8 +180,6 @@ class Overview extends React.Component {
     }
   };
   addNote = (colour) => {
-    console.log("add note");
-    console.log("adding note to email", this.props.email);
     if (this.state.visible === "visible") {
       const newNote = {
         title: "",
@@ -232,7 +194,6 @@ class Overview extends React.Component {
           visible: false,
         }),
         async () => {
-          console.log("new notes =", this.state.notes);
           if (this.props.email) {
             await firebase
               .firestore()

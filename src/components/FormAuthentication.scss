@@ -15,7 +15,7 @@ body {
   padding: 0;
   font-family: "Montserrat", sans-serif;
   color: $color-primary;
-  // overflow-x: hidden;
+
   animation: fadeIn ease-in-out $fade-duration;
   -webkit-animation: fadeIn ease-in-out $fade-duration;
   -moz-animation: fadeIn ease-in-out $fade-duration;
@@ -71,14 +71,11 @@ body {
 body {
   background-color: #f6f8f9;
   overflow-x: hidden;
-  // transition: all 0.2s ease-in-out;
 }
 
 .container {
   padding: $container-padding;
-  // width: 25%;
-  // min-width: 400px;
-  // min-height: 450px;
+
   width: 400px;
   position: absolute;
   top: 50%;
@@ -86,19 +83,16 @@ body {
   transform: translateX(-50%) translateY(-50%);
   background-color: white;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
-  // border-radius: 24px;
+
   border-radius: 12px;
 }
 
 .logo-text {
-  // width: 86px;
-  // height: 54px;
   width: 35px;
   height: 35px;
   margin: 0;
   margin-bottom: $login-margin;
-  // margin: 0 auto !important;
-  // background-color: yellow;
+
   margin-left: 50%;
   transform: translateX(-50%);
 }
@@ -111,7 +105,7 @@ body {
 
 .btn {
   margin-bottom: $login-margin;
-  // border-radius: 100px;
+
   border-radius: 12px;
   border: none;
   color: white;
@@ -160,7 +154,6 @@ body {
   align-items: center;
   text-align: center;
   margin-bottom: $login-margin;
-  // width: 200px;
 
   &__horizontal-line {
     border-top: 1px solid #c7ccce;
@@ -185,17 +178,12 @@ form {
   margin-bottom: $login-margin;
   width: 100%;
   padding: 10px;
-  // border-radius: 200px;
+
   border-radius: 12px;
   box-sizing: border-box;
-  // border-width: 1px !important;
-  // border-color: $color-primary;
+
   border: 1px solid rgba(47, 47, 47, 0.5);
   transition: all 0.2s ease-in-out;
-
-  // &--password-confirmation {
-  //   margin-bottom: calc(#{$login-margin} / 2);
-  // }
 
   &:focus {
     outline: none !important;
@@ -217,7 +205,6 @@ form {
 }
 
 .h4-form {
-  // margin-bottom: calc(#{$login-margin} / 2);
   margin-bottom: $login-margin;
   opacity: 0.5;
   font-weight: 400;
@@ -260,12 +247,10 @@ form {
   *,
   html,
   body {
-    // font-size: 16px;
   }
   .container {
-    // border-radius: 50px;
     width: calc(100vw - 2 * #{$container-padding});
-    // min-width: 200px;
+
     margin: 0;
     height: calc(100% - 2 * #{$container-padding});
     min-height: 600px;
@@ -282,7 +267,6 @@ form {
   input,
   input::-webkit-input-placeholder {
     font-size: 0.8rem;
-    // line-height: 3;
   }
 
   .input,
