@@ -131,6 +131,7 @@ class Overview extends React.Component {
                       </p>
                       <p className="notes__note__container__date">
                         {this.convertTimestampToDate(note.timestamp)}
+                        {/* {note.timestamp} */}
                       </p>
                     </div>
                   </li>
@@ -220,8 +221,9 @@ class Overview extends React.Component {
     }
   };
   convertTimestampToDate = (timestamp) => {
-    const date = Date(timestamp);
-    const dateArray = date.split(" ");
+    const myDate = new Date(timestamp);
+    const dateString = myDate.toGMTString();
+    const dateArray = dateString.split(" ");
     const dateFormatted = [dateArray[1], dateArray[2], dateArray[3]].join(" ");
     return dateFormatted;
   };
