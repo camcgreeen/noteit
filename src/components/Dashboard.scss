@@ -1,5 +1,5 @@
 $main-container-padding: 30px;
-$dashboard-margin: 50px;
+$dashboard-margin: 20px;
 $color-primary: #2e2e2e;
 $color-secondary: #75e1c0;
 $color-tertiary: #9c9fad;
@@ -102,10 +102,10 @@ body {
 .overview-screen {
   margin: $dashboard-margin auto;
   padding: $main-container-padding;
-  width: 65%;
+  width: 80%;
   min-width: 400px;
   height: calc(
-    85vh - #{2 * $main-container-padding} - #{2 * $nav-padding} - #{$nav-element-size}
+    90vh - #{2 * $main-container-padding} - #{2 * $nav-padding} - #{$nav-element-size}
   );
   // min-height: 150px;
   // height: calc(65vh - #{2 * $main-container-padding});
@@ -128,7 +128,7 @@ body {
   position: relative;
   margin: $dashboard-margin auto;
   padding: $main-container-padding;
-  width: 65%;
+  width: 80%;
   min-width: 400px;
   // height: calc(75vh - #{2 * $main-container-padding});
   // min-height: 150px;
@@ -183,8 +183,9 @@ body {
   // overflow-y: scroll;
   // height: 100%;
   // min-height: 150px;
-  height: 47.5vh;
-  font-size: 0.8rem;
+  height: 57.5vh;
+  font-size: 0.75rem;
+  // background-color: yellow;
   // height: 20vh;
   // margin-bottom: $dashboard-margin;
 }
@@ -216,33 +217,39 @@ body {
 }
 
 .delete {
-  margin-top: 20px;
-  padding: 4px;
-  cursor: pointer;
-  // border-radius: 40px;
-  transition: all 0.2s ease-in-out;
-  rect {
-    fill: white;
-    stroke: $color-primary;
-  }
-  path {
-    fill: $color-primary;
-  }
-  &:hover {
-    cursor: pointer;
-    rect {
-      // fill: $color-primary;
-      fill: $color-danger;
-      stroke: white;
-    }
-    path {
-      fill: white;
-    }
-  }
+  // margin-top: 20px;
+  // padding: 4px;
+  // cursor: pointer;
+  // transition: all 0.2s ease-in-out;
+  // rect {
+  //   fill: white;
+  //   stroke: $color-primary;
+  // }
+  // path {
+  //   fill: $color-primary;
+  // }
+  // &:hover {
+  //   cursor: pointer;
+  //   rect {
+  //     // fill: $color-primary;
+  //     fill: $color-danger;
+  //     stroke: white;
+  //   }
+  //   path {
+  //     fill: white;
+  //   }
+  // }
+}
+
+.button-container {
+  margin-bottom: 20px;
+  display: inline-block;
 }
 
 .app-btn {
   // transition: all 2s ease-in-out;
+  width: 32px;
+  height: 32px;
   &--add {
     margin-left: 40px;
     // width: 48px;
@@ -259,8 +266,9 @@ body {
   }
   &--back {
     // display: block;
-    margin-bottom: 20px;
+    // margin-bottom: 20px;
     // transition: all 20s ease-in-out;
+    margin-right: 20px;
     circle {
       fill: white;
       stroke: $color-primary;
@@ -279,6 +287,30 @@ body {
       }
     }
   }
+  &--delete {
+    // margin-top: 20px;
+    // padding: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    rect {
+      fill: white;
+      stroke: $color-primary;
+    }
+    path {
+      fill: $color-primary;
+    }
+    &:hover {
+      cursor: pointer;
+      rect {
+        // fill: $color-primary;
+        fill: $color-danger;
+        stroke: white;
+      }
+      path {
+        fill: white;
+      }
+    }
+  }
 }
 
 .app-input {
@@ -287,7 +319,8 @@ body {
     box-sizing: border-box;
     border: none;
     // padding: 5px;
-    font-size: 2rem;
+    font-size: 1.25rem;
+    font-weight: 500;
     margin-bottom: 20px;
     width: 100%;
     text-overflow: ellipsis;
@@ -596,23 +629,13 @@ nav {
   position: fixed;
   bottom: 0;
   width: calc(100% - #{$nav-padding} * 2);
-  // width: 100%;
   padding: $nav-padding;
-  // margin: 0;
   display: flex;
   flex-direction: row;
-  // justify-content: space-around;
   justify-content: space-between;
   align-items: center;
   background-color: #f6f8f9;
   z-index: 10;
-  // background-color: #555967;
-  // position: fixed;
-  // bottom: 0;
-  // display: flex;
-  // flex-direction: row;
-  // align-items: center;
-  // justify-content: space-between;
 }
 
 .no-notes {
@@ -705,25 +728,25 @@ lds-ring {
   }
 }
 
-@media only screen and (max-height: 800px) {
+@media only screen and (max-height: 750px) {
   .ql-editor {
-    height: 30vh;
+    height: 50vh;
   }
 }
 
-@media only screen and (max-height: 700px) {
+@media only screen and (max-height: 600px) {
   .ql-editor {
-    height: 25vh;
+    height: 35vh;
   }
 }
 
 @media only screen and (max-height: 500px) {
   .ql-editor {
-    height: 20vh;
+    height: 30vh;
   }
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 600px) {
   .overview-screen {
     width: calc(100vw - 2 * #{$main-container-padding / 2});
     min-width: 200px;
@@ -756,6 +779,7 @@ lds-ring {
     // background-color: red;
     margin-top: 5vh;
     margin-bottom: 5vh;
+    // background-color: yellow;
     // margin-top: 3vh;
     max-height: calc(
       100vh - 10vh - #{2 * $nav-padding} - #{$nav-element-size} -
